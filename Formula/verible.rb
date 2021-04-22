@@ -6,6 +6,11 @@ class Verible < Formula
   version "0.0-1129-gfc4574e"
   license "Apache-2.0"
 
+  bottle do
+    root_url "https://github.com/google/homebrew-verible/releases/download/verible-0.0-1129-gfc4574e"
+    sha256 cellar: :any_skip_relocation, catalina: "74faeef709a7fd997f2ba89b9006ddec89b979d4f7037ad75d0f43998ccfee3a"
+  end
+
   head do
     url "https://github.com/google/verible.git"
   end
