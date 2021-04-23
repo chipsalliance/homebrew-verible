@@ -2,7 +2,8 @@ class Verible < Formula
   desc "SystemVerilog developer tools"
   homepage "https://github.com/google/verible"
   url "https://github.com/google/verible.git",
-      tag: "v0.0-1129-gfc4574e"
+      tag:      "v0.0-1129-gfc4574e",
+      revision: "fc4574ee582438800d7b9328cbe4dd99cfc84171"
   version "0.0-1129-gfc4574e"
   license "Apache-2.0"
 
