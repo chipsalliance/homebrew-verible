@@ -4,13 +4,22 @@ on:
     branches:
       - main
   pull_request:
+
 jobs:
+
   test-bot:
     strategy:
       matrix:
         os: [macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
+
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.9.0
+        with:
+          all_but_latest: true
+          access_token: ${{ github.token }}
+
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
