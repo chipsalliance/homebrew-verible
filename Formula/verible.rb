@@ -9,7 +9,7 @@ class Verible < Formula
 
   bottle do
     root_url "https://github.com/google/homebrew-verible/releases/download/verible-0.0-1144-gbdaa5bd"
-    sha256 cellar: :any_skip_relocation, catalina: "74faeef709a7fd997f2ba89b9006ddec89b979d4f7037ad75d0f43998ccfee3a"
+    sha256 cellar: :any_skip_relocation, catalina: "b2f9bfea8318e7c5d0aedb858585cb7d4e22f02b4c63081b260513473302dd01"
   end
 
   head do
