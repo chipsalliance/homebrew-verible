@@ -2,13 +2,13 @@ class Verible < Formula
   desc "SystemVerilog developer tools"
   homepage "https://github.com/google/verible"
   url "https://github.com/google/verible.git",
-      tag:      "v0.0-1142-g4c451f7",
-      revision: "4c451f7899773a3fa94b3e93605fa54fc277ce99"
-  version "0.0-1142-g4c451f7"
+      tag:      "v0.0-1144-gbdaa5bd",
+      revision: "bdaa5bd66f557841c77e7e871a6b122ac62caf69"
+  version "0.0-1144-gbdaa5bd"
   license "Apache-2.0"
 
   bottle do
-    root_url "https://github.com/google/homebrew-verible/releases/download/verible-0.0-1142-g4c451f7"
+    root_url "https://github.com/google/homebrew-verible/releases/download/verible-0.0-1144-gbdaa5bd"
     sha256 cellar: :any_skip_relocation, catalina: "74faeef709a7fd997f2ba89b9006ddec89b979d4f7037ad75d0f43998ccfee3a"
   end
 
