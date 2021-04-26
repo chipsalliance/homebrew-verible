@@ -51,3 +51,32 @@ jobs:
         with:
           name: bottles
           path: '*.bottle.*'
+
+  # Add `pr-pull` label after `test-bot` job completes, if:
+  # - triggered by pull_request
+  # - pull_request is not a draft
+  # - pull_request is not from a fork (implies write permission)
+  # - pull_request contains `AUTO_MERGE` line in the PR body
+  label-auto-merge:
+    needs: test-bot
+    if: |
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.draft == false &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Check pull request for AUTO_MERGE line
+        id: regex-match
+        uses: actions-ecosystem/action-regex-match@v2
+        with:
+          text: ${{ github.event.pull_request.body }}
+          regex: '^AUTO_MERGE$'
+          flags: 'm'
+
+      - name: Label pull request with pr-pull label
+        uses: actions-ecosystem/action-add-labels@v1
+        if: ${{ steps.regex-match.outputs.match != '' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: pr-pull
