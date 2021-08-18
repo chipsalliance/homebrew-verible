@@ -1,7 +1,7 @@
 class Verible < Formula
   desc "SystemVerilog developer tools"
-  homepage "https://github.com/google/verible"
-  url "https://github.com/google/verible.git",
+  homepage "https://github.com/chipsalliance/verible"
+  url "https://github.com/chipsalliance/verible.git",
       tag:      "v0.0-1205-gfe310fb",
       revision: "fe310fb15d9dbfc6827d9e10742031d296fcca35"
   version "0.0-1205-gfe310fb"
@@ -13,7 +13,7 @@ class Verible < Formula
   end
 
   head do
-    url "https://github.com/google/verible.git"
+    url "https://github.com/chipsalliance/verible.git"
   end
 
   depends_on "bazel" => :build
