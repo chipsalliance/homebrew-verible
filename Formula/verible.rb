@@ -31,6 +31,9 @@ class Verible < Formula
       --jobs=#{ENV.make_jobs}
       --compilation_mode=opt
     ]
+    if not OS.mac? or not Hardware::CPU.arm?
+      bazel_args << "--copt=-march=native"
+    end
     system "bazel", "build", *bazel_args, "//..."
     system "bazel", "test", *bazel_args, "//..."
     system "bazel", "run", *bazel_args, "//:install", "--", bin.to_s
