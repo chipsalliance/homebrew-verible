@@ -30,7 +30,6 @@ class Verible < Formula
     bazel_args = %W[
       --jobs=#{ENV.make_jobs}
       --compilation_mode=opt
-      --copt=-march=native
     ]
     system "bazel", "build", *bazel_args, "//..."
     system "bazel", "test", *bazel_args, "//..."
