@@ -8,6 +8,11 @@ class Verible < Formula
   version "0.0-1547-g5784ecba"
   license "Apache-2.0"
 
+  bottle do
+    root_url "https://github.com/chipsalliance/homebrew-verible/releases/download/verible-0.0-1547-g5784ecba"
+    sha256 cellar: :any_skip_relocation, big_sur: "a616d584bafa3199f9aa05e7dfec8a13df720d59206d6f2ea0e04b84b7905cc0"
+  end
+
   head do
     url "https://github.com/chipsalliance/verible.git"
   end
