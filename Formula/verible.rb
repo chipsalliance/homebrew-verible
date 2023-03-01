@@ -3,39 +3,45 @@ class Verible < Formula
   homepage "https://github.com/chipsalliance/verible"
   url "https://github.com/chipsalliance/verible.git",
       branch:   "master",
-      tag:      "v0.0-1547-g5784ecba",
-      revision: "5784ecba034456f4a4ece82120ff1247293b1bee"
-  version "0.0-1547-g5784ecba"
+      tag:      "v0.0-2206-g88515c17",
+      revision: "88515c17ed11474e4e37061666222801542d44bb"
+  version "0.0-2206-g88515c17"
   license "Apache-2.0"
-
-  bottle do
-    root_url "https://github.com/chipsalliance/homebrew-verible/releases/download/verible-0.0-1547-g5784ecba"
-    sha256 cellar: :any_skip_relocation, big_sur: "a616d584bafa3199f9aa05e7dfec8a13df720d59206d6f2ea0e04b84b7905cc0"
-  end
 
   head do
     url "https://github.com/chipsalliance/verible.git"
   end
 
   depends_on "bazel" => :build
-  depends_on "coreutils" => :build
 
   def install
-    # prepend GNU coreutils path (with normal names) for GNU install
-    ENV.prepend_path "PATH", Formula["coreutils"].opt_libexec/"gnubin"
-    # ignore .brew_home when searching for targets:
-    # .brew_home/_bazel is used as bazel output user root,
-    # which confuses the hierarchical target search
-    (buildpath/".bazelignore").write ".brew_home\n"
-
+    optflag = if Hardware::CPU.arm? && OS.mac?
+      "-mcpu=apple-m1"
+    elsif build.bottle?
+      "-march=#{Hardware.oldest_cpu}"
+    else
+      "-march=native"
+    end
     bazel_args = %W[
       --jobs=#{ENV.make_jobs}
       --compilation_mode=opt
+      --copt=#{optflag}
+      --linkopt=-Wl,-rpath,#{rpath}
+      --verbose_failures
     ]
-    bazel_args << "--copt=-march=native" if !OS.mac? || !Hardware::CPU.arm?
-    system "bazel", "build", *bazel_args, "//..."
-    system "bazel", "test", *bazel_args, "//..."
-    system "bazel", "run", *bazel_args, "//:install", "--", bin.to_s
+    system "bazel", "build", *bazel_args, "//verilog/tools/..."
+
+    bin.install %w[
+      bazel-bin/verilog/tools/diff/verible-verilog-diff
+      bazel-bin/verilog/tools/formatter/verible-verilog-format
+      bazel-bin/verilog/tools/kythe/verible-verilog-kythe-extractor
+      bazel-bin/verilog/tools/lint/verible-verilog-lint
+      bazel-bin/verilog/tools/ls/verible-verilog-ls
+      bazel-bin/verilog/tools/obfuscator/verible-verilog-obfuscate
+      bazel-bin/verilog/tools/preprocessor/verible-verilog-preprocessor
+      bazel-bin/verilog/tools/project/verible-verilog-project
+      bazel-bin/verilog/tools/syntax/verible-verilog-syntax
+    ]
   end
 
   test do
