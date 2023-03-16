@@ -1,10 +1,14 @@
 # HomeBrew formula for [Chips Alliance's Verible tools](https://chipsalliance.github.io/verible/)
 
-Enables [Verible](https://chipsalliance.github.io/verible/), a suite of
-SystemVerilog developer tools, including a parser,
-[style-linter](https://chipsalliance.github.io/verible/verilog_lint.html), and
-[formatter](https://chipsalliance.github.io/verible/verilog_format.html) be installed
-on macOS using Homebrew.
+This package provides [Verible](https://github.com/chipsalliance/verible#readme)
+on macOS in Homebrew.
+
+Verible is a suite of SystemVerilog developer tools, including a parser,
+[style-linter](https://github.com/chipsalliance/verible/blob/master/verilog/tools/lint/README.md), and
+[formatter](https://github.com/chipsalliance/verible/blob/master/verilog/tools/formatter/README.md).
+
+A [language server](https://github.com/chipsalliance/verible/blob/master/verilog/tools/ls/README.md) makes all these features, as well as 'go-to-definition',
+directly available in your favorite IDE.
 
 ```
 brew tap chipsalliance/verible
