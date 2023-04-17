@@ -7,7 +7,7 @@ class Verible < Formula
       revision: "aac4fadc6d56aced6dc8d4619e72668a758c4ca6"
   version "0.0-3087-gaac4fadc"
   license "Apache-2.0"
-
+  env :std
   head do
     url "https://github.com/chipsalliance/verible.git"
   end
