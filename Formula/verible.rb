@@ -3,9 +3,9 @@ class Verible < Formula
   homepage "https://github.com/chipsalliance/verible"
   url "https://github.com/chipsalliance/verible.git",
       branch:   "master",
-      tag:      "v0.0-3381-gf5d08d3a",
-      revision: "f5d08d3a1c28055b301ecda499d2b031a4e6b68f"
-  version "0.0-3381-gf5d08d3a"
+      tag:      "v0.0-3389-ga1cd07b1",
+      revision: "a1cd07b13572f19df5776381eb52287e994df392"
+  version "0.0-3389-ga1cd07b1"
   license "Apache-2.0"
   env :std
   head do
