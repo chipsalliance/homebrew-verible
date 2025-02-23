@@ -3,9 +3,9 @@ class Verible < Formula
   homepage "https://github.com/chipsalliance/verible"
   url "https://github.com/chipsalliance/verible.git",
       branch:   "master",
-      tag:      "v0.0-3665-ga9394662",
-      revision: "a939466243915e6151d4a3675c3e9689e94e8f8a"
-  version "0.0-3665-ga9394662"
+      tag:      "v0.0-3946-g851d3ff4",
+      revision: "851d3ff4de964bf5ac17b6578dfb2cecb5f89099"
+  version "0.0-3946-g851d3ff4"
   license "Apache-2.0"
   head "https://github.com/chipsalliance/verible.git", branch: "master"
 
@@ -31,19 +31,19 @@ class Verible < Formula
       CC:  "/usr/bin/cc",
       CXX: "/usr/bin/c++",
     ) do
-      system "bazel", "build", *bazel_args, "//verilog/tools/..."
+      system "bazel", "build", *bazel_args, ":install-binaries"
     end
 
     bin.install %w[
-      bazel-bin/verilog/tools/diff/verible-verilog-diff
-      bazel-bin/verilog/tools/formatter/verible-verilog-format
-      bazel-bin/verilog/tools/kythe/verible-verilog-kythe-extractor
-      bazel-bin/verilog/tools/lint/verible-verilog-lint
-      bazel-bin/verilog/tools/ls/verible-verilog-ls
-      bazel-bin/verilog/tools/obfuscator/verible-verilog-obfuscate
-      bazel-bin/verilog/tools/preprocessor/verible-verilog-preprocessor
-      bazel-bin/verilog/tools/project/verible-verilog-project
-      bazel-bin/verilog/tools/syntax/verible-verilog-syntax
+      bazel-bin/verible/verilog/tools/diff/verible-verilog-diff
+      bazel-bin/verible/verilog/tools/formatter/verible-verilog-format
+      bazel-bin/verible/verilog/tools/kythe/verible-verilog-kythe-extractor
+      bazel-bin/verible/verilog/tools/lint/verible-verilog-lint
+      bazel-bin/verible/verilog/tools/ls/verible-verilog-ls
+      bazel-bin/verible/verilog/tools/obfuscator/verible-verilog-obfuscate
+      bazel-bin/verible/verilog/tools/preprocessor/verible-verilog-preprocessor
+      bazel-bin/verible/verilog/tools/project/verible-verilog-project
+      bazel-bin/verible/verilog/tools/syntax/verible-verilog-syntax
     ]
   end
 
