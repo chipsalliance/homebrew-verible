@@ -10,6 +10,8 @@ Verible is a suite of SystemVerilog developer tools, including a parser,
 A [language server](https://github.com/chipsalliance/verible/blob/master/verilog/tools/ls/README.md) makes all these features, as well as 'go-to-definition',
 directly available in your favorite IDE.
 
+1. Install XCode from macOS App Store and accept License Agreement
+2. Install Verible via `brew` like so:
 ```
 brew tap chipsalliance/verible
 brew install verible
