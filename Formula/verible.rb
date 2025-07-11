@@ -9,7 +9,7 @@ class Verible < Formula
   license "Apache-2.0"
   head "https://github.com/chipsalliance/verible.git", branch: "master"
 
-  depends_on "bazel" => :build
+  depends_on "bazel@7" => :build
   depends_on macos: :catalina # C++ features
 
   def install
