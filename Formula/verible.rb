@@ -25,6 +25,8 @@ class Verible < Formula
     # features. Therefore, use the current platform's version, since Homebrew
     # builds and bottles are specific to the OS version.
     bazel_args << "--macos_sdk_version=#{MacOS.version}"
+    # Explictly disable repository contents cache for Bazel 8.3+
+    bazel_args << "--repo_contents_cache="
 
     with_env(
       # Bazel's environment and path resolution break Homebrew's shim scripts
