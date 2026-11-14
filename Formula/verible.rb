@@ -10,7 +10,7 @@ class Verible < Formula
   head "https://github.com/chipsalliance/verible.git", branch: "master"
 
   depends_on "bazel@7" => :build
-  depends_on macos: :catalina # C++ features
+  depends_on :macos
 
   def install
     bazel_args = []
@@ -26,11 +26,27 @@ class Verible < Formula
     # builds and bottles are specific to the OS version.
     bazel_args << "--macos_sdk_version=#{MacOS.version}"
 
-    with_env(
+    build_env = {
       # Bazel's environment and path resolution break Homebrew's shim scripts
       CC:  "/usr/bin/cc",
       CXX: "/usr/bin/c++",
-    ) do
+    }
+
+    # Recent versions of Apple clang list the SDKSettings.json file of the SDK
+    # in the dependency file. Bazel 7 rejects this file as an absolute path
+    # inclusion, unless the file is in the Command Line Tools SDK. That SDK
+    # root is the only one that Bazel 7 accepts (see unix_cc_configure.bzl).
+    # Thus, when the Command Line Tools SDK is installed, use it for the
+    # toolchain configuration step and for the compile actions. The two must
+    # use the same SDK, or the layering check fails.
+    clt_sdk = "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+    if File.directory?(clt_sdk)
+      build_env[:SDKROOT] = clt_sdk
+      bazel_args << "--action_env=SDKROOT"
+      bazel_args << "--host_action_env=SDKROOT"
+    end
+
+    with_env(build_env) do
       system "bazel", "build", *bazel_args, ":install-binaries"
     end
 
