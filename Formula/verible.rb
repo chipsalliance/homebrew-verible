@@ -10,7 +10,7 @@ class Verible < Formula
   head "https://github.com/chipsalliance/verible.git", branch: "master"
 
   depends_on "bazel@7" => :build
-  depends_on macos: :catalina # C++ features
+  depends_on :macos
 
   def install
     bazel_args = []
